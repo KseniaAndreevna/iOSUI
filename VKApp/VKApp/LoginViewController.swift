@@ -14,10 +14,41 @@ class LoginViewController: UIViewController {
     @IBOutlet var loginTextField: UITextField!
     @IBOutlet var scrollView: UIScrollView!
     
+    @objc func hideKeyboard() {
+        self.scrollView?.endEditing(true)
+    }
+    
+    func checkUserData() -> Bool {
+        guard let login = loginTextField.text,
+            let password = passwordTextField.text else { return false }
+        
+        if login == "" && password == "" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+   func showLoginError() {
+        // Создаем контроллер
+        let alter = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
+        // Создаем кнопку для UIAlertController
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        // Добавляем кнопку на UIAlertController
+        alter.addAction(action)
+        // Показываем UIAlertController
+        present(alter, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
         passwordTextField.isSecureTextEntry = true
+        
+        // Жест нажатия
+        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        // Присваиваем его UIScrollVIew
+        scrollView?.addGestureRecognizer(hideKeyboardGesture)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -53,15 +84,24 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         //print("Login: \(loginTextField.text ?? "")")
         //print("Password: \(passwordTextField.text ?? "")")
-        if loginTextField.text == "" &&
-            passwordTextField.text == "" {
-            
+        let checkResult = checkUserData()
+        if checkResult {
             performSegue(withIdentifier: "MainScreenPresentationSegue", sender: self)
-            
         } else {
-            print("Auth failed!")
+            showLoginError()
         }
     }
+    
+//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+//            // Проверяем данные
+//            let checkResult = checkUserData()
+//            // Если данные не верны, покажем ошибку
+//            if !checkResult {
+//                showLoginError()
+//            }
+//            // Вернем результат
+//            return checkResult
+//        }
     
     // Когда клавиатура появляется
         @objc func keyboardWasShown(notification: Notification) {
@@ -83,6 +123,7 @@ class LoginViewController: UIViewController {
             scrollView.contentInset = contentInsets
         }
     
+
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
         //view.resignFirstResponder()
         scrollView.endEditing(true)
