@@ -1,27 +1,26 @@
 //
-//  FriendCell.swift
+//  UserTableViewCell.swift
 //  VKApp
 //
-//  Created by Ksusha on 21.02.2021.
+//  Created by Ksusha on 24.02.2021.
 //
 
 import UIKit
 
 class FriendCell: UITableViewCell {
     
-    static let reuseIdentifier = "FriendCell"
-    
-    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var friendLabel: UILabel!
+    @IBOutlet var birthdayLabel: UILabel!
     @IBOutlet var avatarIconImageView: UIImageView!
-    //@IBOutlet var birthdayLabel: UILabel!
-
     
-    func configure(with friend: FriendInfo) {
-        nameLabel.text = String(describing: friend.firstName + " " + friend.surname)
-        avatarIconImageView.image = friend.avatar
+    static let reuseIdentifier = "FriendCell"
+        
+    func configure(with friend: Friend) {
+        friendLabel.text = String(describing: friend.firstName + " " + friend.surname)
+        //avatarIconImageView.image = friend.avatar
         //birthdayLabel.text = String(describing: friend.birthday)
-    }
-    
+        }
+
 //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        // Initialization code
