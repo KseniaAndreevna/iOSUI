@@ -1,0 +1,140 @@
+//
+//  ViewController.swift
+//  VKApp
+//
+//  Created by Ksusha on 12.02.2021.
+// 
+
+
+import UIKit
+
+class LoginViewController: UIViewController {
+
+    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var loginTextField: UITextField!
+    @IBOutlet var scrollView: UIScrollView!
+    
+    @objc func hideKeyboard() {
+        self.scrollView?.endEditing(true)
+    }
+    
+    func checkUserData() -> Bool {
+        guard let login = loginTextField.text,
+            let password = passwordTextField.text else { return false }
+        
+        if login == "" && password == "" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+   func showLoginError() {
+        // Создаем контроллер
+        let alter = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
+        // Создаем кнопку для UIAlertController
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        // Добавляем кнопку на UIAlertController
+        alter.addAction(action)
+        // Показываем UIAlertController
+        present(alter, animated: true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        loginTextField.placeholder = "Введите логин..."
+        passwordTextField.placeholder = "Введите пароль..."
+        print(#function)
+        passwordTextField.isSecureTextEntry = true
+        
+        // Жест нажатия
+        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        // Присваиваем его UIScrollVIew
+        scrollView?.addGestureRecognizer(hideKeyboardGesture)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(#function)
+        
+        // Подписываемся на два уведомления: одно приходит при появлении клавиатуры
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+        // Второе — когда она пропадает
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print(#function)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print(#function)
+    }
+    
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        //print("Login: \(loginTextField.text ?? "")")
+        //print("Password: \(passwordTextField.text ?? "")")
+        let checkResult = checkUserData()
+        if checkResult {
+            performSegue(withIdentifier: "MainScreenPresentationSegue", sender: self)
+        } else {
+            showLoginError()
+        }
+    }
+    
+//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+//            // Проверяем данные
+//            let checkResult = checkUserData()
+//            // Если данные не верны, покажем ошибку
+//            if !checkResult {
+//                showLoginError()
+//            }
+//            // Вернем результат
+//            return checkResult
+//        }
+    
+    // Когда клавиатура появляется
+        @objc func keyboardWasShown(notification: Notification) {
+            
+            // Получаем размер клавиатуры
+            let info = notification.userInfo! as NSDictionary
+            let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: kbSize.height, right: 0.0)
+            
+            // Добавляем отступ внизу UIScrollView, равный размеру клавиатуры
+            scrollView.contentInset = contentInsets
+            scrollView.scrollIndicatorInsets = contentInsets
+        }
+        
+        //Когда клавиатура исчезает
+        @objc func keyboardWillBeHidden(notification: Notification) {
+            // Устанавливаем отступ внизу UIScrollView, равный 0
+            let contentInsets = UIEdgeInsets.zero
+            scrollView.contentInset = contentInsets
+        }
+    
+
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        //view.resignFirstResponder()
+        scrollView.endEditing(true)
+    }
+
+}
+
+
+
+
+
