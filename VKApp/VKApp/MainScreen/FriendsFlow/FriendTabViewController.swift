@@ -50,9 +50,6 @@ class FriendTabViewController: UIViewController {
         tableView.register(UINib(nibName: FriendRichCell.nibName, bundle: nil), forCellReuseIdentifier: FriendRichCell.reuseIdentifier)
         tableView.register(FriendAlphabetHeaderView.self, forHeaderFooterViewReuseIdentifier: FriendAlphabetHeaderView.reuseIdentifier)
         
-        networkSession.loadFriends(token: Session.shared.token)
-        networkSession.loadPics(token: Session.shared.token)
-        
             // Uncomment the following line to preserve selection between presentations
             // self.clearsSelectionOnViewWillAppear = false
 
@@ -78,6 +75,11 @@ class FriendTabViewController: UIViewController {
             friendViewController.displayedFriend = selectedFriend
         }
    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        networkSession.loadFriends(token: Session.shared.token)
+        networkSession.loadPics(token: Session.shared.token)
+    }
         
 //        @IBAction func showFriend(segue: UIStoryboardSegue) {
 //            if let showFriendViewController = segue.source as? FriendsViewController,

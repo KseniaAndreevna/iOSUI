@@ -82,14 +82,17 @@ class GroupTabViewController: UIViewController, UISearchResultsUpdating {
         self.tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height)
         searchController.searchBar.placeholder = "Find..."
         
-        //VK
-        networkSession.loadGroups(token: Session.shared.token)
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //VK
+        networkSession.loadGroups(token: Session.shared.token)
+        networkSession.searchGroup(token: Session.shared.token, group: "snowsev")
     }
     
     func filterContent(for searchText: String) {

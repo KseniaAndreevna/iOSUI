@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1CC20DEAB2A0065C7A4EB4 /* Pods_VKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82257567DC96E78D59955BD /* Pods_VKApp.framework */; };
 		614EDFBB25DA9105003B6209 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614EDFBA25DA9105003B6209 /* AppDelegate.swift */; };
 		614EDFBD25DA9105003B6209 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614EDFBC25DA9105003B6209 /* SceneDelegate.swift */; };
 		614EDFBF25DA9105003B6209 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614EDFBE25DA9105003B6209 /* LoginViewController.swift */; };
@@ -44,13 +45,20 @@
 		61D921F025FD436200C0DD6A /* CloudImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D921EF25FD436200C0DD6A /* CloudImageView.swift */; };
 		61D921FE260128C700C0DD6A /* NewsDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D921FD260128C700C0DD6A /* NewsDetailController.swift */; };
 		93565E66260B7AC70090BBEF /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93565E65260B7AC70090BBEF /* Session.swift */; };
+		936935452619AF190071F7E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936935442619AF190071F7E0 /* User.swift */; };
+		936935492619B0960071F7E0 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936935482619B0960071F7E0 /* UserResponse.swift */; };
+		9369354E2619B7620071F7E0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9369354D2619B7620071F7E0 /* SwiftyJSON */; };
 		93A0744E260F19AD00FB8E8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 93A0744D260F19AD00FB8E8D /* Alamofire */; };
 		93A07451260F1D9200FB8E8D /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A07450260F1D9200FB8E8D /* VKLoginViewController.swift */; };
 		93A07455260F3DB400FB8E8D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A07454260F3DB400FB8E8D /* NetworkService.swift */; };
 		93B0700326068E9300C46F16 /* AddGroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0700226068E9300C46F16 /* AddGroupDetailViewController.swift */; };
 		93B0701126069D5700C46F16 /* AnimatedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0701026069D5700C46F16 /* AnimatedNavigationController.swift */; };
-		93B0701426069E1800C46F16 /* Animator in Resources */ = {isa = PBXBuildFile; fileRef = 93B0701326069E1800C46F16 /* Animator */; };
 		93B0701A2606A27500C46F16 /* FriendImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B070192606A27400C46F16 /* FriendImagesViewController.swift */; };
+		93C8157026133F170057B131 /* CustomPush+PopAnimators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C8156C26133F170057B131 /* CustomPush+PopAnimators.swift */; };
+		93C8157126133F170057B131 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C8156D26133F170057B131 /* CustomSegue.swift */; };
+		93C8157226133F170057B131 /* InteractiveTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C8156E26133F170057B131 /* InteractiveTransitionAnimator.swift */; };
+		93C8157326133F170057B131 /* TopDownAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C8156F26133F170057B131 /* TopDownAnimation.swift */; };
+		93C8157B261340380057B131 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 93C8157A261340380057B131 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,13 +100,21 @@
 		61D921EC25FD3CB600C0DD6A /* CloudShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudShapeView.swift; sourceTree = "<group>"; };
 		61D921EF25FD436200C0DD6A /* CloudImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudImageView.swift; sourceTree = "<group>"; };
 		61D921FD260128C700C0DD6A /* NewsDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailController.swift; sourceTree = "<group>"; };
+		81E0CBED044B73EA3033B193 /* Pods-VKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKApp.debug.xcconfig"; path = "Target Support Files/Pods-VKApp/Pods-VKApp.debug.xcconfig"; sourceTree = "<group>"; };
 		93565E65260B7AC70090BBEF /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		936935442619AF190071F7E0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		936935482619B0960071F7E0 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		93A07450260F1D9200FB8E8D /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		93A07454260F3DB400FB8E8D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		93B0700226068E9300C46F16 /* AddGroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupDetailViewController.swift; sourceTree = "<group>"; };
 		93B0701026069D5700C46F16 /* AnimatedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedNavigationController.swift; sourceTree = "<group>"; };
-		93B0701326069E1800C46F16 /* Animator */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Animator; sourceTree = "<group>"; };
 		93B070192606A27400C46F16 /* FriendImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendImagesViewController.swift; sourceTree = "<group>"; };
+		93C8156C26133F170057B131 /* CustomPush+PopAnimators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CustomPush+PopAnimators.swift"; sourceTree = "<group>"; };
+		93C8156D26133F170057B131 /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
+		93C8156E26133F170057B131 /* InteractiveTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveTransitionAnimator.swift; sourceTree = "<group>"; };
+		93C8156F26133F170057B131 /* TopDownAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopDownAnimation.swift; sourceTree = "<group>"; };
+		E66C225A380AC6E25947DE00 /* Pods-VKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKApp.release.xcconfig"; path = "Target Support Files/Pods-VKApp/Pods-VKApp.release.xcconfig"; sourceTree = "<group>"; };
+		E82257567DC96E78D59955BD /* Pods_VKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,18 +122,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C8157B261340380057B131 /* Kingfisher in Frameworks */,
 				93A0744E260F19AD00FB8E8D /* Alamofire in Frameworks */,
+				9369354E2619B7620071F7E0 /* SwiftyJSON in Frameworks */,
+				2B1CC20DEAB2A0065C7A4EB4 /* Pods_VKApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08A20622365C8A6DD5CAD5EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				81E0CBED044B73EA3033B193 /* Pods-VKApp.debug.xcconfig */,
+				E66C225A380AC6E25947DE00 /* Pods-VKApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		614EDFAE25DA9105003B6209 = {
 			isa = PBXGroup;
 			children = (
 				614EDFB925DA9105003B6209 /* VKApp */,
 				614EDFB825DA9105003B6209 /* Products */,
+				08A20622365C8A6DD5CAD5EA /* Pods */,
+				A978E83F9049191E552A03EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,10 +162,10 @@
 		614EDFB925DA9105003B6209 /* VKApp */ = {
 			isa = PBXGroup;
 			children = (
-				93B0701326069E1800C46F16 /* Animator */,
 				614EDFC825DA9109003B6209 /* Info.plist */,
-				61D9220026012D2B00C0DD6A /* LoginScreen */,
 				614EDFC025DA9105003B6209 /* Main.storyboard */,
+				93C8157526133F1E0057B131 /* Animator */,
+				61D9220026012D2B00C0DD6A /* LoginScreen */,
 				61D3EE4F25E66E9B00C3B870 /* MainScreen */,
 				93B0701026069D5700C46F16 /* AnimatedNavigationController.swift */,
 				614EDFBA25DA9105003B6209 /* AppDelegate.swift */,
@@ -163,6 +193,7 @@
 		61D3EE6825E6A19200C3B870 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				936935432619AE7D0071F7E0 /* Classes */,
 				61D3EE5525E66F2F00C3B870 /* Friend.swift */,
 				61D3EE5825E66F6800C3B870 /* Group.swift */,
 				61D4932B25EAEE2C00BC10BF /* UserPic.swift */,
@@ -236,6 +267,34 @@
 			path = LoginScreen;
 			sourceTree = "<group>";
 		};
+		936935432619AE7D0071F7E0 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				936935442619AF190071F7E0 /* User.swift */,
+				936935482619B0960071F7E0 /* UserResponse.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		93C8157526133F1E0057B131 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				93C8156C26133F170057B131 /* CustomPush+PopAnimators.swift */,
+				93C8156D26133F170057B131 /* CustomSegue.swift */,
+				93C8156E26133F170057B131 /* InteractiveTransitionAnimator.swift */,
+				93C8156F26133F170057B131 /* TopDownAnimation.swift */,
+			);
+			path = Animator;
+			sourceTree = "<group>";
+		};
+		A978E83F9049191E552A03EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E82257567DC96E78D59955BD /* Pods_VKApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -243,9 +302,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 614EDFCB25DA9109003B6209 /* Build configuration list for PBXNativeTarget "VKApp" */;
 			buildPhases = (
+				A9A5E46206174B5711893F3E /* [CP] Check Pods Manifest.lock */,
 				614EDFB325DA9105003B6209 /* Sources */,
 				614EDFB425DA9105003B6209 /* Frameworks */,
 				614EDFB525DA9105003B6209 /* Resources */,
+				1D3C7C14F790B1F4D851399A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,6 +315,8 @@
 			name = VKApp;
 			packageProductDependencies = (
 				93A0744D260F19AD00FB8E8D /* Alamofire */,
+				93C8157A261340380057B131 /* Kingfisher */,
+				9369354D2619B7620071F7E0 /* SwiftyJSON */,
 			);
 			productName = VKApp;
 			productReference = 614EDFB725DA9105003B6209 /* VKApp.app */;
@@ -285,6 +348,8 @@
 			mainGroup = 614EDFAE25DA9105003B6209;
 			packageReferences = (
 				93A0744C260F19AD00FB8E8D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				93C81579261340380057B131 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9369354C2619B7620071F7E0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 614EDFB825DA9105003B6209 /* Products */;
 			projectDirPath = "";
@@ -301,7 +366,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				614EDFC725DA9109003B6209 /* LaunchScreen.storyboard in Resources */,
-				93B0701426069E1800C46F16 /* Animator in Resources */,
 				61D4935725EF8E2600BC10BF /* GroupRichCell.xib in Resources */,
 				61D921D525F412FC00C0DD6A /* NewsRichCell.xib in Resources */,
 				614EDFC425DA9109003B6209 /* Assets.xcassets in Resources */,
@@ -311,6 +375,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D3C7C14F790B1F4D851399A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VKApp/Pods-VKApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VKApp/Pods-VKApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VKApp/Pods-VKApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9A5E46206174B5711893F3E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VKApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		614EDFB325DA9105003B6209 /* Sources */ = {
@@ -323,15 +429,20 @@
 				61D4935025ED884B00BC10BF /* LikeView.swift in Sources */,
 				93B0701126069D5700C46F16 /* AnimatedNavigationController.swift in Sources */,
 				61D3EE6625E69AE900C3B870 /* GroupTabViewController.swift in Sources */,
+				93C8157126133F170057B131 /* CustomSegue.swift in Sources */,
 				61D4933325EB01E300BC10BF /* AddGroupTableViewController.swift in Sources */,
 				614EDFBF25DA9105003B6209 /* LoginViewController.swift in Sources */,
 				61D921D425F412FC00C0DD6A /* NewsRichCell.swift in Sources */,
 				614EDFBB25DA9105003B6209 /* AppDelegate.swift in Sources */,
+				936935492619B0960071F7E0 /* UserResponse.swift in Sources */,
 				61D3EE5C25E6754D00C3B870 /* FriendCell.swift in Sources */,
+				93C8157326133F170057B131 /* TopDownAnimation.swift in Sources */,
 				614EDFBD25DA9105003B6209 /* SceneDelegate.swift in Sources */,
 				93B0700326068E9300C46F16 /* AddGroupDetailViewController.swift in Sources */,
 				61D4936125EFBE4D00BC10BF /* FriendRichCell.swift in Sources */,
+				93C8157026133F170057B131 /* CustomPush+PopAnimators.swift in Sources */,
 				61D4936525EFBEBC00BC10BF /* FriendAlphabetHeaderView.swift in Sources */,
+				936935452619AF190071F7E0 /* User.swift in Sources */,
 				61D4933625EB02F400BC10BF /* GroupOutCell.swift in Sources */,
 				61D921E525FD16C500C0DD6A /* CustomSearchBar.swift in Sources */,
 				61D4933A25EB862800BC10BF /* GroupInfoCell.swift in Sources */,
@@ -343,6 +454,7 @@
 				61D921F025FD436200C0DD6A /* CloudImageView.swift in Sources */,
 				61D4932F25EAF00B00BC10BF /* FriendInfoCell.swift in Sources */,
 				61D921FE260128C700C0DD6A /* NewsDetailController.swift in Sources */,
+				93C8157226133F170057B131 /* InteractiveTransitionAnimator.swift in Sources */,
 				61D4932C25EAEE2C00BC10BF /* UserPic.swift in Sources */,
 				61D921D825F4176C00C0DD6A /* News.swift in Sources */,
 				61D921ED25FD3CB600C0DD6A /* CloudShapeView.swift in Sources */,
@@ -497,6 +609,7 @@
 		};
 		614EDFCC25DA9109003B6209 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81E0CBED044B73EA3033B193 /* Pods-VKApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -517,6 +630,7 @@
 		};
 		614EDFCD25DA9109003B6209 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E66C225A380AC6E25947DE00 /* Pods-VKApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -558,6 +672,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9369354C2619B7620071F7E0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		93A0744C260F19AD00FB8E8D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -566,13 +688,31 @@
 				minimumVersion = 5.4.1;
 			};
 		};
+		93C81579261340380057B131 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9369354D2619B7620071F7E0 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9369354C2619B7620071F7E0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		93A0744D260F19AD00FB8E8D /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 93A0744C260F19AD00FB8E8D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		93C8157A261340380057B131 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93C81579261340380057B131 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

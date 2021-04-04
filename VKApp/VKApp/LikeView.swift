@@ -11,12 +11,12 @@ import UIKit
 class LikeView: UIControl {
 
     @IBOutlet var likeImageView: UIImageView!
-    @IBInspectable var lineWidth: CGFloat = 5
+    @IBInspectable var lineWidth: CGFloat = 3
     let heartLayer = CAShapeLayer()
         
     public var isLiked: Bool = false { didSet { setNeedsDisplay() } }
-    var heartColor: UIColor { return isLiked ? .red : .white }
-    var strokeColor: UIColor { return isLiked ? .red : .black }
+    var heartColor: UIColor { return isLiked ? .red : .clear }
+    var strokeColor: UIColor { return isLiked ? .clear : .black }
 
     override func awakeFromNib() {
         super.awakeFromNib()

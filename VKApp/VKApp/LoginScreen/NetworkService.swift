@@ -7,38 +7,49 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class NetworkService {
     
+    let baseVkUrl = "https://api.vk.com"
+    let paramsVk: Parameters = [
+        "access_token": Session.shared.token,
+        "extended": 1,
+        "v": "5.92"
+    ]
+    
+//    func loadGroups(token: String) {
+//        let path = "/method/groups.get"
+//
+//        AF.request(baseVkUrl + path, method: .get, parameters: paramsVk).responseJSON { response in
+//            guard let json = response.value else { return }
+//
+//            Session.shared.groupsJSON = json as? JSONEncoder
+//            print("jsonGroups \(json)")
+//        }
+//    }
+    
     func loadGroups(token: String) {
-        let baseUrl = "https://api.vk.com"
         let path = "/method/groups.get"
-        
-        let params: Parameters = [
-            "access_token": token,
-            "extended": 1,
-            "v": "5.92"
-        ]
-        
-        AF.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
-            guard let json = response.value else { return }
+    
+        AF.request(baseVkUrl + path, method: .get, parameters: paramsVk).responseData { response in
+            //guard let data = response.value else { return }
+            //let json = JSON(data: data)
+            //let json = try! JSON(data: data); else do { return }
             
-            Session.shared.groupsJSON = json as? JSONEncoder
-            print("jsonGroups \(json)")
+            guard let data = response.value,
+                  let json = try? JSON(data: data) else { return }
+                
+            let user = try! JSONDecoder().decode(UserResponse.self, from: data).list
+            print(json)
+            print(user)
         }
     }
     
     func loadFriends(token: String) {
-        let baseUrl = "https://api.vk.com"
         let path = "/method/friends.get"
         
-        let params: Parameters = [
-            "access_token": token,
-            "extended": 1,
-            "v": "5.92"
-        ]
-        
-        AF.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+        AF.request(baseVkUrl + path, method: .get, parameters: paramsVk).responseJSON { response in
             guard let json = response.value else { return }
             
             Session.shared.friendsJSON = json as? JSONEncoder
@@ -46,26 +57,34 @@ class NetworkService {
         }
     }
     
-//    func findGroup(with name: String) {
-//
-//        var groupID: String = ""
-//        var groupName: String = Session.shared.friendsJSON["name"] as! String
-//
-//        print("Find in jsonGroups with name \(groupName) is \(groupID)")
-//    }
-    
-    func loadPics(token: String) {
-        //photos.getUserPhotos
-        let baseUrl = "https://api.vk.com"
-        let path = "/method/photos.getUserPhotos"
+    func searchGroup(token: String, group: String) {
+        let path = "/method/groups.search"
         
         let params: Parameters = [
             "access_token": token,
             "extended": 1,
-            "v": "5.92"
+            "v": "5.92",
+            "q": group
         ]
         
-        AF.request(baseUrl + path, method: .get, parameters: params).responseJSON { response in
+        print("group \(group)")
+        
+        AF.request(baseVkUrl + path, method: .get, parameters: params).responseJSON { response in
+            //guard let json = response.value else { return }
+            switch response.result {
+            case .failure(let error):
+                print("jsonSearchGroups \(error)")
+            case .success(let json):
+                print("jsonSearchGroups \(json)")
+            }
+        }
+   }
+    
+    func loadPics(token: String) {
+        //photos.getUserPhotos
+        let path = "/method/photos.getUserPhotos"
+        
+        AF.request(baseVkUrl + path, method: .get, parameters: paramsVk).responseJSON { response in
             guard let json = response.value else { return }
             
             Session.shared.picsJSON = json as? JSONEncoder
