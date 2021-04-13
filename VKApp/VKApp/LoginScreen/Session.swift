@@ -14,8 +14,4 @@ class Session {
     
     var token: String = ""
     var userId: String = ""
-    
-    var friendsJSON: JSONEncoder? = nil
-    var groupsJSON: JSONEncoder? = nil
-    var picsJSON: JSONEncoder? = nil
 }

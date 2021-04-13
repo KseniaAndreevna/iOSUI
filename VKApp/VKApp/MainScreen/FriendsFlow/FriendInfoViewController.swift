@@ -11,7 +11,7 @@ import UIKit
 
 class FriendInfoViewController: UICollectionViewController {
     
-    var displayedFriend: Friend?
+    var displayedFriend: User?
     
     @IBOutlet var friendNameLabel: UINavigationItem!
     var friendName: String = ""
@@ -33,7 +33,7 @@ class FriendInfoViewController: UICollectionViewController {
         // Register cell classes
         //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: FriendInfoCell.reuseIdentifier)
         //print("друг \(displayedFriend!.userId)")
-        friendNameLabel.title = displayedFriend!.surname + " " + displayedFriend!.firstName
+        friendNameLabel.title = (displayedFriend?.lastName ?? "") + " " + (displayedFriend?.firstName ?? "")
         // Do any additional setup after loading the view.
     }
 
@@ -54,7 +54,7 @@ class FriendInfoViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendInfoCell.reuseIdentifier, for: indexPath) as? FriendInfoCell else { return UICollectionViewCell() }
     
-        friendName = displayedFriend!.surname + " " + displayedFriend!.firstName
+        friendName = (displayedFriend?.lastName ?? "") + " " + (displayedFriend?.firstName ?? "")
         friendDetail[indexPath.item].name = friendName
         cell.configure(with: friendDetail[indexPath.item])
         

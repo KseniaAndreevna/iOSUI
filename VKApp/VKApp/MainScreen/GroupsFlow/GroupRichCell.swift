@@ -40,9 +40,8 @@ class GroupRichCell: UITableViewCell {
     }
     
     public func configure(with group: Group) {
-        groupNameLabel.text = String(describing: group.name)
-        //dateLabel.text = String(describing: group.date)
-        groupIconImageView.image = group.mainPic
+        groupNameLabel.text = group.name
+        groupIconImageView.kf.setImage(with: group.pictureUrl)
     }
     
 }

@@ -8,5 +8,5 @@
 import UIKit
 
 class UserResponse: Decodable {
-  let list: [User]
+  let list: [OldUser]
 }

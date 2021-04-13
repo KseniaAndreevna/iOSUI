@@ -15,9 +15,7 @@
 		614EDFC425DA9109003B6209 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 614EDFC325DA9108003B6209 /* Assets.xcassets */; };
 		614EDFC725DA9109003B6209 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614EDFC525DA9109003B6209 /* LaunchScreen.storyboard */; };
 		618FD0EC25E58E4A00A37857 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FD0EB25E58E4A00A37857 /* MainViewController.swift */; };
-		61D3EE5625E66F2F00C3B870 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D3EE5525E66F2F00C3B870 /* Friend.swift */; };
 		61D3EE5925E66F6800C3B870 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D3EE5825E66F6800C3B870 /* Group.swift */; };
-		61D3EE5C25E6754D00C3B870 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D3EE5B25E6754D00C3B870 /* FriendCell.swift */; };
 		61D3EE6025E675DF00C3B870 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D3EE5F25E675DF00C3B870 /* GroupCell.swift */; };
 		61D3EE6325E68F5800C3B870 /* FriendTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D3EE6225E68F5800C3B870 /* FriendTabViewController.swift */; };
 		61D3EE6625E69AE900C3B870 /* GroupTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D3EE6525E69AE900C3B870 /* GroupTabViewController.swift */; };
@@ -48,6 +46,8 @@
 		936935452619AF190071F7E0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936935442619AF190071F7E0 /* User.swift */; };
 		936935492619B0960071F7E0 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936935482619B0960071F7E0 /* UserResponse.swift */; };
 		9369354E2619B7620071F7E0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9369354D2619B7620071F7E0 /* SwiftyJSON */; };
+		93693556261CF9850071F7E0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 93693555261CF9850071F7E0 /* RealmSwift */; };
+		9369355A261CF9E70071F7E0 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 93693559261CF9E70071F7E0 /* KeychainAccess */; };
 		93A0744E260F19AD00FB8E8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 93A0744D260F19AD00FB8E8D /* Alamofire */; };
 		93A07451260F1D9200FB8E8D /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A07450260F1D9200FB8E8D /* VKLoginViewController.swift */; };
 		93A07455260F3DB400FB8E8D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A07454260F3DB400FB8E8D /* NetworkService.swift */; };
@@ -71,9 +71,7 @@
 		614EDFC625DA9109003B6209 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		614EDFC825DA9109003B6209 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		618FD0EB25E58E4A00A37857 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		61D3EE5525E66F2F00C3B870 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		61D3EE5825E66F6800C3B870 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		61D3EE5B25E6754D00C3B870 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		61D3EE5F25E675DF00C3B870 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		61D3EE6225E68F5800C3B870 /* FriendTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTabViewController.swift; sourceTree = "<group>"; };
 		61D3EE6525E69AE900C3B870 /* GroupTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTabViewController.swift; sourceTree = "<group>"; };
@@ -124,7 +122,9 @@
 			files = (
 				93C8157B261340380057B131 /* Kingfisher in Frameworks */,
 				93A0744E260F19AD00FB8E8D /* Alamofire in Frameworks */,
+				9369355A261CF9E70071F7E0 /* KeychainAccess in Frameworks */,
 				9369354E2619B7620071F7E0 /* SwiftyJSON in Frameworks */,
+				93693556261CF9850071F7E0 /* RealmSwift in Frameworks */,
 				2B1CC20DEAB2A0065C7A4EB4 /* Pods_VKApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,7 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				936935432619AE7D0071F7E0 /* Classes */,
-				61D3EE5525E66F2F00C3B870 /* Friend.swift */,
 				61D3EE5825E66F6800C3B870 /* Group.swift */,
 				61D4932B25EAEE2C00BC10BF /* UserPic.swift */,
 				61D921D725F4176C00C0DD6A /* News.swift */,
@@ -217,7 +216,6 @@
 			children = (
 				61D3EE6225E68F5800C3B870 /* FriendTabViewController.swift */,
 				61D4936425EFBEBC00BC10BF /* FriendAlphabetHeaderView.swift */,
-				61D3EE5B25E6754D00C3B870 /* FriendCell.swift */,
 				61D4935F25EFBE4D00BC10BF /* FriendRichCell.swift */,
 				61D4936025EFBE4D00BC10BF /* FriendRichCell.xib */,
 				61D4932E25EAF00B00BC10BF /* FriendInfoCell.swift */,
@@ -317,6 +315,8 @@
 				93A0744D260F19AD00FB8E8D /* Alamofire */,
 				93C8157A261340380057B131 /* Kingfisher */,
 				9369354D2619B7620071F7E0 /* SwiftyJSON */,
+				93693555261CF9850071F7E0 /* RealmSwift */,
+				93693559261CF9E70071F7E0 /* KeychainAccess */,
 			);
 			productName = VKApp;
 			productReference = 614EDFB725DA9105003B6209 /* VKApp.app */;
@@ -350,6 +350,8 @@
 				93A0744C260F19AD00FB8E8D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				93C81579261340380057B131 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				9369354C2619B7620071F7E0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				93693554261CF9840071F7E0 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				93693558261CF9E60071F7E0 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 614EDFB825DA9105003B6209 /* Products */;
 			projectDirPath = "";
@@ -435,7 +437,6 @@
 				61D921D425F412FC00C0DD6A /* NewsRichCell.swift in Sources */,
 				614EDFBB25DA9105003B6209 /* AppDelegate.swift in Sources */,
 				936935492619B0960071F7E0 /* UserResponse.swift in Sources */,
-				61D3EE5C25E6754D00C3B870 /* FriendCell.swift in Sources */,
 				93C8157326133F170057B131 /* TopDownAnimation.swift in Sources */,
 				614EDFBD25DA9105003B6209 /* SceneDelegate.swift in Sources */,
 				93B0700326068E9300C46F16 /* AddGroupDetailViewController.swift in Sources */,
@@ -460,7 +461,6 @@
 				61D921ED25FD3CB600C0DD6A /* CloudShapeView.swift in Sources */,
 				61D3EE6325E68F5800C3B870 /* FriendTabViewController.swift in Sources */,
 				93A07451260F1D9200FB8E8D /* VKLoginViewController.swift in Sources */,
-				61D3EE5625E66F2F00C3B870 /* Friend.swift in Sources */,
 				93B0701A2606A27500C46F16 /* FriendImagesViewController.swift in Sources */,
 				618FD0EC25E58E4A00A37857 /* MainViewController.swift in Sources */,
 				61D4935B25EFAF3B00BC10BF /* GroupAlphabetHeaderView.swift in Sources */,
@@ -680,6 +680,22 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		93693554261CF9840071F7E0 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.7.2;
+			};
+		};
+		93693558261CF9E60071F7E0 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
 		93A0744C260F19AD00FB8E8D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -703,6 +719,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9369354C2619B7620071F7E0 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		93693555261CF9850071F7E0 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93693554261CF9840071F7E0 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		93693559261CF9E70071F7E0 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93693558261CF9E60071F7E0 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 		93A0744D260F19AD00FB8E8D /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

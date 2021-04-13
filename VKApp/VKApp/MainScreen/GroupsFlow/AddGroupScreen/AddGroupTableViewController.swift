@@ -9,24 +9,13 @@ import UIKit
 
 class AddGroupTableViewController: UITableViewController {
     
-    var groups = [
-        Group(groupId: 233, name: "Indi-Rockers", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-        Group(groupId: 577, name: "Pop-Rockers", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-        Group(groupId: 666, name: "Rappers", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-        Group(groupId: 987, name: "Daddies", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-        Group(groupId: 790, name: "Drivers", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-        Group(groupId: 875, name: "Motorcyclists", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-    ]
+    var groups = [Group]()
+    private let networkSession = NetworkService(token: Session.shared.token)
 
         override func viewDidLoad() {
             super.viewDidLoad()
             //
             tableView.register(UINib(nibName: GroupRichCell.nibName, bundle: nil), forCellReuseIdentifier: GroupRichCell.reuseIdentifier)
-            // Uncomment the following line to preserve selection between presentations
-            // self.clearsSelectionOnViewWillAppear = false
-
-            // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-            // self.navigationItem.rightBarButtonItem = self.editButtonItem
         }
 
         // MARK: - Table view data source
@@ -61,4 +50,18 @@ class AddGroupTableViewController: UITableViewController {
             performSegue(withIdentifier: "AddGroupUnwindSegue", sender: nil)
         }
     
+}
+
+extension AddGroupTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        networkSession.searchGroup(group: searchText, completionHandler: { [weak self] result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(groups):
+                self?.groups = groups
+                self?.tableView.reloadData()
+            }
+        })
+    }
 }

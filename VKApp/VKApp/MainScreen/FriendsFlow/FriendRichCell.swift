@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendRichCell: UITableViewCell {
     
@@ -24,6 +25,10 @@ class FriendRichCell: UITableViewCell {
         friendShadowView.layer.shadowColor = UIColor.systemBlue.cgColor
         friendShadowView.layer.shadowRadius = 4
         friendShadowView.layer.shadowOpacity = 0.8
+        
+        //        let tapGesture = UITapGestureRecognizer()
+        //        tapGesture.addTarget(self, action: #selector(tapGestureDetected))
+        //        self.friendIconImageView.addGestureRecognizer(tapGesture)
     }
     
     override func layoutSubviews() {
@@ -35,16 +40,13 @@ class FriendRichCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
+    } 
     
-    public func configure(with friend: Friend) {
-        friendNameLabel.text = String(describing: friend.surname) + " " + String(describing: friend.firstName)
-        //dateLabel.text = String(describing: friend.date)
-        friendIconImageView.image =  friend.avatar
-        
-        let tapGesture = UITapGestureRecognizer()
-        tapGesture.addTarget(self, action: #selector(tapGestureDetected))
-        self.friendIconImageView.addGestureRecognizer(tapGesture)
+    public func configure(with friend: User) {
+        friendNameLabel.text = "\(friend.firstName) \(friend.lastName)"
+//        //dateLabel.text = String(describing: friend.date)
+//        friendIconImageView.image =  friend.avatar
+        //friendIconImageView.kf.setImage(with: friend.photoUrl)
     }
     
     @objc func tapGestureDetected(_ gesture: UITapGestureRecognizer) {

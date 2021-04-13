@@ -11,21 +11,9 @@ class GroupTabViewController: UIViewController, UISearchResultsUpdating {
     
  var searchResults: [Group] = []
  let searchController = UISearchController(searchResultsController: nil)
- private let networkSession = NetworkService()
+ private let networkSession = NetworkService(token: Session.shared.token)
     
- var addedGroups = [
-    Group(groupId: 123, name: "Rockers", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 234, name: "Programmers", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 345, name: "Economists", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 456, name: "Students", description: "Students of Oxford", mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 567, name: "Skiers", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 678, name: "Snowboarders", description: "Snowboarders of UK", mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 999, name: "Anarchists", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 333, name: "Biologists", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 222, name: "Accountants", description: "Accountants of Moscow", mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 111, name: "Moms", description: nil, mainPic: UIImage(named: "bears")!, pics: [nil]),
-    Group(groupId: 555, name: "Runners", description: "Runners of Russia", mainPic: UIImage(named: "bears")!, pics: [nil]),
-    ]
+ var addedGroups = [Group]()
     
     var sectionedGroups: [GroupSection] {
         addedGroups.reduce(into: []) {
@@ -91,8 +79,15 @@ class GroupTabViewController: UIViewController, UISearchResultsUpdating {
     
     override func viewWillAppear(_ animated: Bool) {
         //VK
-        networkSession.loadGroups(token: Session.shared.token)
-        networkSession.searchGroup(token: Session.shared.token, group: "snowsev")
+        networkSession.loadGroups(completionHandler: { [weak self] result in
+            switch result {
+            case let .success(groups):
+                self?.addedGroups = groups
+                self?.tableView.reloadData()
+            case let .failure(error):
+                print(error)
+            }
+        })
     }
     
     func filterContent(for searchText: String) {
