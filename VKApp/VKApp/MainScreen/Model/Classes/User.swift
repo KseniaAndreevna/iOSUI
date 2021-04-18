@@ -33,46 +33,41 @@ import RealmSwift
 //      },
 
 
-
-
 class User: RealmSwift.Object {
-    
+
     @objc dynamic var id: Int = 0
-    //private var photoUrlString: String = ""
+    @objc dynamic var photoUrlString: String = ""
     @objc dynamic var firstName: String = ""
     @objc dynamic var lastName: String = ""
 
-    //@objc dynamic var photoUrl: URL? { URL(string: photoUrlString) }
-    
-    convenience init(id: Int, firstName: String, lastName: String//, photoUrl: URL
-    ) {
+    var photoUrl: URL? { URL(string: photoUrlString) }
+
+    convenience init(json: JSON) {
         self.init()
 
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
-        //self.photoUrlString = photoUrlString
-    }
-}
-
-
-
-
-class JSONUser {
-    var id: Int = 0
-    private var photoUrlString: String = ""
-    var firstName: String = ""
-    var lastName: String = ""
-    
-    var photoUrl: URL? { URL(string: photoUrlString) }
-     
-    init(json: JSON) {
         self.id = json["id"].intValue
         self.photoUrlString = json["photo_100"].stringValue
         self.firstName = json["first_name"].stringValue
         self.lastName = json["last_name"].stringValue
     }
 }
+
+
+//class JSONUser {
+//    var id: Int = 0
+//    private var photoUrlString: String = ""
+//    var firstName: String = ""
+//    var lastName: String = ""
+//
+//    var photoUrl: URL? { URL(string: photoUrlString) }
+//
+//    init(json: JSON) {
+//        self.id = json["id"].intValue
+//        self.photoUrlString = json["photo_100"].stringValue
+//        self.firstName = json["first_name"].stringValue
+//        self.lastName = json["last_name"].stringValue
+//    }
+//}
 
 struct UserSection: Comparable {
     let title: Character

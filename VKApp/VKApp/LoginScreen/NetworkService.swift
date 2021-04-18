@@ -68,6 +68,7 @@ class NetworkService {
                 let friendsJSONArray = JSON(json)["response"]["items"].arrayValue
                 let friends = friendsJSONArray.map(User.init)
                 completionHandler(.success(friends))
+                print("loadFriends \(friends)")
             }
         }
     }
@@ -96,21 +97,27 @@ class NetworkService {
    }
     
     func loadPics(token: String) {
-        //photos.getUserPhotos
         let path = "/method/photos.getUserPhotos"
         
         AF.request(baseVkUrl + path, method: .get, parameters: baseParams).responseJSON { response in
             guard let json = response.value else { return }
-            
             print("jsonPics \(json)")
         }
     }
-    
-    func saveUserData(_ users: [User]) {
+
+    func saveUserData(_: User) {
         guard let realm = try? Realm() else { return }
         guard let user = realm.objects(User.self).first else { return }
-        print(#function)
-        print(user.firstName)
+        print("saveUserData \(user.firstName)")
+    }
+    
+    func loadUserData (_: User) {
+        guard let realm = try? Realm() else { return }
+        let user = User()
+        try? realm.write {
+            realm.add(user)
+        }
+        print(#function + "\(user.photoUrlString)")
     }
     
 //    func saveUserData(_ users: [User]) {
@@ -140,17 +147,32 @@ class NetworkService {
 //            realm.add(userDB)
 //        }
 //    }
+    
+    
+    func friend(for lastName: String = "Попов", completion: @escaping (Result<[User], Error>) -> Void) {
 
-    func loadUserData () {
-        guard let realm = try? Realm() else { return }
-        let user = [User(id: 123456789, firstName: "Test", lastName: "Test")
-                         //, photoUrl: try! "".asURL()),
-        ]
-        try? realm.write {
-            realm.add(user)
+        let path = "/method/friends.search"
+        var params = baseParams
+        params["q"] = lastName
+
+        print("lastName \(lastName)")
+
+        AF.request(baseVkUrl + path, method: .get, parameters: params).response { response in
+            switch response.result {
+            case .failure(let error):
+                completion(.failure(error))
+                //completionHandler(.failure(error))
+            case .success(let data):
+                guard let data = data,
+                      let json = try? JSON(data: data) else { return }
+
+                let friendsJSON = json["list"].arrayValue
+                //let friends = friendsJSON.map { User(json: $0, lastName: lastName) }
+                let friends = friendsJSON.map { User(json: $0) }
+
+                completion(.success(friends))
+            }
         }
-        print(#function)
-        //print(user.firstName)
     }
 
 }

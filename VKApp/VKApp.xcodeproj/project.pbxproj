@@ -54,6 +54,7 @@
 		93B0700326068E9300C46F16 /* AddGroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0700226068E9300C46F16 /* AddGroupDetailViewController.swift */; };
 		93B0701126069D5700C46F16 /* AnimatedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B0701026069D5700C46F16 /* AnimatedNavigationController.swift */; };
 		93B0701A2606A27500C46F16 /* FriendImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B070192606A27400C46F16 /* FriendImagesViewController.swift */; };
+		93B7D059262B624E005CB14C /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B7D058262B624E005CB14C /* RealmService.swift */; };
 		93C8157026133F170057B131 /* CustomPush+PopAnimators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C8156C26133F170057B131 /* CustomPush+PopAnimators.swift */; };
 		93C8157126133F170057B131 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C8156D26133F170057B131 /* CustomSegue.swift */; };
 		93C8157226133F170057B131 /* InteractiveTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C8156E26133F170057B131 /* InteractiveTransitionAnimator.swift */; };
@@ -107,6 +108,7 @@
 		93B0700226068E9300C46F16 /* AddGroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupDetailViewController.swift; sourceTree = "<group>"; };
 		93B0701026069D5700C46F16 /* AnimatedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedNavigationController.swift; sourceTree = "<group>"; };
 		93B070192606A27400C46F16 /* FriendImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendImagesViewController.swift; sourceTree = "<group>"; };
+		93B7D058262B624E005CB14C /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		93C8156C26133F170057B131 /* CustomPush+PopAnimators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CustomPush+PopAnimators.swift"; sourceTree = "<group>"; };
 		93C8156D26133F170057B131 /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
 		93C8156E26133F170057B131 /* InteractiveTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				614EDFC825DA9109003B6209 /* Info.plist */,
 				614EDFC025DA9105003B6209 /* Main.storyboard */,
+				93B7D058262B624E005CB14C /* RealmService.swift */,
 				93C8157526133F1E0057B131 /* Animator */,
 				61D9220026012D2B00C0DD6A /* LoginScreen */,
 				61D3EE4F25E66E9B00C3B870 /* MainScreen */,
@@ -453,6 +456,7 @@
 				61D3EE5925E66F6800C3B870 /* Group.swift in Sources */,
 				93A07455260F3DB400FB8E8D /* NetworkService.swift in Sources */,
 				61D921F025FD436200C0DD6A /* CloudImageView.swift in Sources */,
+				93B7D059262B624E005CB14C /* RealmService.swift in Sources */,
 				61D4932F25EAF00B00BC10BF /* FriendInfoCell.swift in Sources */,
 				61D921FE260128C700C0DD6A /* NewsDetailController.swift in Sources */,
 				93C8157226133F170057B131 /* InteractiveTransitionAnimator.swift in Sources */,

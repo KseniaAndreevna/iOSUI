@@ -43,15 +43,6 @@ class FriendTabViewController: UIViewController {
         tableView.register(FriendAlphabetHeaderView.self, forHeaderFooterViewReuseIdentifier: FriendAlphabetHeaderView.reuseIdentifier)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowFriendSegue",
-           let cellIndexPath = tableView.indexPathForSelectedRow,
-           let friendViewController = segue.destination as? FriendInfoViewController {
-            let selectedFriend = sectionedFriends[cellIndexPath.section].friends[cellIndexPath.row]
-            friendViewController.displayedFriend = selectedFriend
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         networkSession.loadFriends(completionHandler: { [weak self] result in
             switch result {
@@ -64,11 +55,20 @@ class FriendTabViewController: UIViewController {
         })
         networkSession.loadPics(token: Session.shared.token)
         
-        let realmUser = [User(id: 123456789, firstName: "Test", lastName: "Test"),
-                         User(id: 987654321, firstName: "Test2", lastName: "Test2")]
-        networkSession.saveUserData(realmUser)
-        networkSession.loadUserData()
+        //let realmFriend = friends.first
+        //networkSession.saveUserData(realmFriend)
+        //networkSession.loadUserData(realmFriend)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowFriendSegue",
+           let cellIndexPath = tableView.indexPathForSelectedRow,
+           let friendViewController = segue.destination as? FriendInfoViewController {
+            let selectedFriend = sectionedFriends[cellIndexPath.section].friends[cellIndexPath.row]
+            friendViewController.displayedFriend = selectedFriend
+        }
+    }
+    
     @IBAction func logOutButtonPressed(_ sender: UIBarButtonItem) {
         
     }
@@ -101,7 +101,6 @@ extension FriendTabViewController: UITableViewDataSource {
         
         return header
     }
-    
     
 }
 

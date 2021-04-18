@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 //private let reuseIdentifier = "FriendInfoCell"
 
@@ -13,8 +14,12 @@ class FriendInfoViewController: UICollectionViewController {
     
     var displayedFriend: User?
     
+    private let networkSession = NetworkService(token: Session.shared.token)
+    
     @IBOutlet var friendNameLabel: UINavigationItem!
     var friendName: String = ""
+    
+    private lazy var friends: Results<User>? = try? Realm(configuration: RealmService.deleteIfMigration).objects(User.self).filter("firstName == %@", displayedFriend?.firstName ?? "")
     
     var friendDetail = [
         UserPic(name: "", date: Date(), userPic: UIImage(named: "panda-go-panda")!),
@@ -35,6 +40,22 @@ class FriendInfoViewController: UICollectionViewController {
         //print("друг \(displayedFriend!.userId)")
         friendNameLabel.title = (displayedFriend?.lastName ?? "") + " " + (displayedFriend?.firstName ?? "")
         // Do any additional setup after loading the view.
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let currentFriend = displayedFriend?.firstName {
+            networkSession.friend(for: currentFriend, completion: { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    print(error)
+                case let .success(forecasts):
+                    try? RealmService.save(items: forecasts)
+                    self?.collectionView.reloadData()
+                }
+            })
+        }
     }
 
 
