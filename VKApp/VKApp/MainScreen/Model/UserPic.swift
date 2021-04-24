@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftyJSON
+import RealmSwift
 
 struct UserPic {
     var name: String
@@ -38,15 +39,42 @@ class Photo {
 }
 
 struct Size {
-    let height: Int
     let url: String
     let type: String
     let width: Int
+    let height: Int
     
     init(json: SwiftyJSON.JSON) {
-        self.height = json["height"].intValue
         self.url = json["url"].stringValue
         self.type = json["type"].stringValue
         self.width = json["width"].intValue
+        self.height = json["height"].intValue
+    }
+}
+
+
+class VKPhoto: RealmSwift.Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var ownerId: Int = 0
+    var sizes = [VKPhotoSize]()
+    var count: Int?
+
+    convenience init(json: JSON) {
+        self.init()
+        
+        self.id = json["id"].intValue
+        self.ownerId = json["owner_id"].intValue
+    }
+}
+
+class VKPhotoSize {
+    let type: String
+    private let photoUrlString : String
+
+    var photoUrl: URL? { URL(string: photoUrlString) }
+    
+    init(json: JSON) {
+        self.type = json["type"].stringValue
+        self.photoUrlString = json["url"].stringValue
     }
 }

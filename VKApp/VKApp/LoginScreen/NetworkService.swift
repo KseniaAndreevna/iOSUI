@@ -120,6 +120,40 @@ class NetworkService {
         print(#function + "\(user.photoUrlString)")
     }
     
+    
+    func loadPhotos(owner: Int, completionHandler: @escaping ((Result<[VKPhoto], Error>) -> Void)) {
+        let path = "/method/photos.get"
+        var photoParams = baseParams
+        photoParams["extended"] = 0
+        photoParams["owner_id"] = owner
+        photoParams["album_id"] = "wall"
+        photoParams["photo_sizes"] = 1
+        
+        AF.request(baseVkUrl + path, method: .get, parameters: photoParams).responseJSON { response in
+            switch response.result {
+            case let .failure(error):
+                completionHandler(.failure(error))
+            case let .success(json):
+                var count = JSON(json)["response"]["count"].intValue
+                let photosJSONArray = JSON(json)["response"]["items"].arrayValue
+                let photosFriend = photosJSONArray.map(VKPhoto.init)
+                if count > 50 {
+                    count = 50
+                }
+                for index in 0..<count {
+                    let photoSizeJSONArray = JSON(json)["response"]["items"][index]["sizes"].arrayValue
+                    let photoSizeArray = photoSizeJSONArray.map(VKPhotoSize.init)
+                    photosFriend[index].sizes = photoSizeArray
+                    photosFriend[index].count = count
+                    
+                }
+                completionHandler(.success(photosFriend))
+            }
+        }
+        
+        print(#function + "\(owner)")
+    }
+    
 //    func saveUserData(_ users: [User]) {
 //        do {
 //            let realm = try Realm()

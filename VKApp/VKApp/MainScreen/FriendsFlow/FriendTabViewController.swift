@@ -12,6 +12,7 @@ class FriendTabViewController: UIViewController {
     private let networkSession = NetworkService(token: Session.shared.token)
     
     var friends = [User]()
+    var photos = [VKPhoto]()
     
     @IBOutlet var tableView: UITableView!
     
@@ -53,7 +54,17 @@ class FriendTabViewController: UIViewController {
                 self?.tableView.reloadData()
             }
         })
-        networkSession.loadPics(token: Session.shared.token)
+        //networkSession.loadPics(token: Session.shared.token)
+        
+//        networkSession.loadPhotos(owner: self.friends.first?.id ?? 617849582, completionHandler: { [weak self] result in
+//            switch result {
+//            case let .failure(error):
+//                print(error)
+//            case let .success(photos):
+//                self?.photos = photos
+//                self?.tableView.reloadData()
+//            }
+//        })
         
         //let realmFriend = friends.first
         //networkSession.saveUserData(realmFriend)

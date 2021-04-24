@@ -7,10 +7,19 @@
 
 import UIKit
 
+private let reuseIdentifier = "FriendRichCell"
+
 class FriendImagesViewController: UIViewController {
     
     @IBOutlet var currentImageView: UIImageView!
     @IBOutlet var nextAppearingImageView: UIImageView!
+    
+    private let networkSession = NetworkService(token: Session.shared.token)
+    
+    var friend: User?
+    var photos: [VKPhoto] = []
+    
+    @IBOutlet var tableView: UITableView!
     
     private var displayedImages: [UIImage] = [
         UIImage(named: "panda01")!,
@@ -23,6 +32,22 @@ class FriendImagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.register(UINib(nibName: "FriendPhotosCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: self.reuseIdentifier)
+        guard let friend = self.friend else { return }
+        self.navigationItem.title = friend.lastName + " " + friend.firstName
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let friend = self.friend else { return }
+        networkSession.loadPhotos(owner: friend.id, completionHandler: { result in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(photos):
+                self.photos = photos
+                self.tableView.reloadData()
+            }
+        })
     }
     
     @IBAction func imageSwipedRight(_ sender: UISwipeGestureRecognizer) {

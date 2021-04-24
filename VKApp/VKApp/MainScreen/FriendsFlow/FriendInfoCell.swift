@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FriendInfoCell: UICollectionViewCell {
     
@@ -17,16 +18,28 @@ class FriendInfoCell: UICollectionViewCell {
     @IBOutlet var tapCounter: UILabel!
     var tapCount: Int = 0
     
-    func configure(with pic: UserPic) {
-        nameLabel.text = String(describing: pic.name)
-        dateLabel.text = String(describing: pic.date)
-        iconImageView.image = pic.userPic
+//    func configure(with pic: UserPic) {
+//        nameLabel.text = String(describing: pic.name)
+//        dateLabel.text = String(describing: pic.date)
+//        iconImageView.image = pic.userPic
+//        tapCounter.text = String(tapCount)
+//
+//        let tapGesture = UITapGestureRecognizer()
+//        tapGesture.addTarget(self, action: #selector(tapGestureDetected))
+//        self.addGestureRecognizer(tapGesture)
+//    }
+    
+    func configure(with pic: VKPhoto) {
+        nameLabel.text = String(describing: pic.id)
+        dateLabel.text = String(describing: Date())
+        iconImageView.kf.setImage(with: pic.sizes.first?.photoUrl)
         tapCounter.text = String(tapCount)
         
         let tapGesture = UITapGestureRecognizer()
         tapGesture.addTarget(self, action: #selector(tapGestureDetected))
         self.addGestureRecognizer(tapGesture)
     }
+   
    
     @objc func tapGestureDetected(_ gesture: UITapGestureRecognizer) {
         animateFriendPic()
