@@ -39,6 +39,10 @@ class User: RealmSwift.Object {
     @objc dynamic var photoUrlString: String = ""
     @objc dynamic var firstName: String = ""
     @objc dynamic var lastName: String = ""
+    
+    let photos = List<VKPhoto>()
+    
+    
 
     var photoUrl: URL? { URL(string: photoUrlString) }
 
@@ -49,6 +53,10 @@ class User: RealmSwift.Object {
         self.photoUrlString = json["photo_100"].stringValue
         self.firstName = json["first_name"].stringValue
         self.lastName = json["last_name"].stringValue
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
 }
 

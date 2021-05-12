@@ -46,7 +46,7 @@ class FriendRichCell: UITableViewCell {
         friendNameLabel.text = "\(friend.firstName) \(friend.lastName)"
 //        //dateLabel.text = String(describing: friend.date)
 //        friendIconImageView.image =  friend.avatar
-        //friendIconImageView.kf.setImage(with: friend.photoUrl)
+        friendIconImageView.kf.setImage(with: friend.photoUrl)
     }
     
     @objc func tapGestureDetected(_ gesture: UITapGestureRecognizer) {

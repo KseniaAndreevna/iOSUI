@@ -6,18 +6,20 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendTabViewController: UIViewController {
     
     private let networkSession = NetworkService(token: Session.shared.token)
     
-    var friends = [User]()
-    var photos = [VKPhoto]()
+    let friends: Results<User>? = try? RealmService.get(type: User.self)
+    var notificationToken: NotificationToken?
     
     @IBOutlet var tableView: UITableView!
     
     var sectionedFriends: [UserSection] {
-        friends.reduce(into: []) {
+        guard let friends = friends else { return [] }
+        return friends.reduce(into: [UserSection]() ) {
             currentSectionFriends, friend in
             guard let firstLetter = friend.lastName.first else { return }
             
@@ -42,33 +44,28 @@ class FriendTabViewController: UIViewController {
         
         tableView.register(UINib(nibName: FriendRichCell.nibName, bundle: nil), forCellReuseIdentifier: FriendRichCell.reuseIdentifier)
         tableView.register(FriendAlphabetHeaderView.self, forHeaderFooterViewReuseIdentifier: FriendAlphabetHeaderView.reuseIdentifier)
+        
+        notificationToken = friends?.observe { [weak self] changes in
+            switch changes {
+            case .initial:
+                break
+            case .update:
+                self?.tableView.reloadData()
+            case let .error(error):
+                print(error)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        networkSession.loadFriends(completionHandler: { [weak self] result in
+        networkSession.loadFriends(completionHandler: { result in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(friends):
-                self?.friends = friends
-                self?.tableView.reloadData()
+                try? RealmService.save(items: friends, configuration: RealmService.deleteIfMigration, update: .modified)
             }
         })
-        //networkSession.loadPics(token: Session.shared.token)
-        
-//        networkSession.loadPhotos(owner: self.friends.first?.id ?? 617849582, completionHandler: { [weak self] result in
-//            switch result {
-//            case let .failure(error):
-//                print(error)
-//            case let .success(photos):
-//                self?.photos = photos
-//                self?.tableView.reloadData()
-//            }
-//        })
-        
-        //let realmFriend = friends.first
-        //networkSession.saveUserData(realmFriend)
-        //networkSession.loadUserData(realmFriend)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -117,9 +114,17 @@ extension FriendTabViewController: UITableViewDataSource {
 
 extension FriendTabViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            friends.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+        if editingStyle == .delete,
+           let friendToDelete = friends?[indexPath.row] {
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.delete(friendToDelete)
+                }
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } catch {
+                print(error)
+            }
         }
     }
     

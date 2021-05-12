@@ -134,19 +134,22 @@ class NetworkService {
             case let .failure(error):
                 completionHandler(.failure(error))
             case let .success(json):
-                var count = JSON(json)["response"]["count"].intValue
+//                var count = JSON(json)["response"]["count"].intValue
+                
                 let photosJSONArray = JSON(json)["response"]["items"].arrayValue
+                
+                
                 let photosFriend = photosJSONArray.map(VKPhoto.init)
-                if count > 50 {
-                    count = 50
-                }
-                for index in 0..<count {
-                    let photoSizeJSONArray = JSON(json)["response"]["items"][index]["sizes"].arrayValue
-                    let photoSizeArray = photoSizeJSONArray.map(VKPhotoSize.init)
-                    photosFriend[index].sizes = photoSizeArray
-                    photosFriend[index].count = count
-                    
-                }
+//                if count > 50 {
+//                    count = 50
+//                }
+//                for index in 0..<count {
+//                    let photoSizeJSONArray = JSON(json)["response"]["items"][index]["sizes"].arrayValue
+//                    let photoSizeArray = photoSizeJSONArray.map(VKPhotoSize.init)
+////                    photosFriend[index].sizes = photoSizeArray
+////                    photosFriend[index].count = count
+//
+//                }
                 completionHandler(.success(photosFriend))
             }
         }

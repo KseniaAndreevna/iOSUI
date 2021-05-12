@@ -48,7 +48,7 @@ class NewsTabViewController: UITableViewController {
    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "SegueShowDetailGroup", sender: nil) //ShowNewsUnwindSegue
+        performSegue(withIdentifier: "ShowNewsSegue", sender: nil) //ShowNewsUnwindSegue
     }
 }
      

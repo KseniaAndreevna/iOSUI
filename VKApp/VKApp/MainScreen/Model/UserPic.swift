@@ -53,27 +53,35 @@ struct Size {
 }
 
 
-class VKPhoto: RealmSwift.Object {
+class VKPhoto: EmbeddedObject {
     @objc dynamic var id: Int = 0
     @objc dynamic var ownerId: Int = 0
-    var sizes = [VKPhotoSize]()
-    var count: Int?
+    
+    let sizes = List<VKPhotoSize>()
+    let count = RealmOptional<Int>()
 
     convenience init(json: JSON) {
         self.init()
         
         self.id = json["id"].intValue
         self.ownerId = json["owner_id"].intValue
+        
+        print(json["sizes"])
+        
+        let sizes = json["sizes"].arrayValue.map(VKPhotoSize.init)
+        self.sizes.append(objectsIn: sizes)
     }
 }
 
-class VKPhotoSize {
-    let type: String
-    private let photoUrlString : String
+class VKPhotoSize: EmbeddedObject {
+    @objc dynamic var type: String = ""
+    @objc private dynamic var photoUrlString : String = ""
 
     var photoUrl: URL? { URL(string: photoUrlString) }
     
-    init(json: JSON) {
+    convenience init(json: JSON) {
+        self.init()
+        
         self.type = json["type"].stringValue
         self.photoUrlString = json["url"].stringValue
     }

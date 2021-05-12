@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 struct GroupResponse: Codable {
     let response: GroupContainer
@@ -32,10 +33,19 @@ struct GroupContainer: Codable {
 //      "photo_200" : "https:\/\/sun1-99.userapi.com\/s\/v1\/ig2\/xtJFBRPa19Qj6riYjU6axByE-uRprP6w6HLZ3LxUsYCzJSzBfp0tN-jk6Ne_jyyLKMfTndDFTQeb9hyUCiwFzYxL.jpg?size=200x0&quality=96&crop=6,5,1098,1098&ava=1"
 //    },
 
-struct Group: Codable, Equatable {
-    let groupId: Int
-    let name: String
-    private let pictureUrlString: String
+class Group: Object, Codable {
+    @objc dynamic var groupId: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic private var pictureUrlString: String = ""
+    
+    required convenience init(from decoder: Decoder) throws {
+        self.init()
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        groupId = try container.decode(Int.self, forKey: .groupId)
+        name = try container.decode(String.self, forKey: .name)
+        pictureUrlString = try container.decode(String.self, forKey: .pictureUrlString)
+    }
     
     var pictureUrl: URL? { URL(string: pictureUrlString) }
     
@@ -44,7 +54,21 @@ struct Group: Codable, Equatable {
         case name
         case pictureUrlString = "photo_200"
     }
+    
+    override class func primaryKey() -> String? {
+        return "groupId"
+    }
 }
+
+
+
+
+
+
+
+
+
+
 
 struct GroupSection: Comparable {
     let title: Character

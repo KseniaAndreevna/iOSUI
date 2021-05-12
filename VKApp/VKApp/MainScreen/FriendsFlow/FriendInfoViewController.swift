@@ -21,47 +21,42 @@ class FriendInfoViewController: UICollectionViewController {
     @IBOutlet var friendNameLabel: UINavigationItem!
     var friendName: String = ""
     var vkFriends: User?
-    var vkPhotos = [VKPhoto]()
+//    var vkPhotos = [VKPhoto]()
     
     private lazy var friends: Results<User>? =
         try? Realm(configuration: RealmService.deleteIfMigration)
         .objects(User.self)
-        .filter("firstName == %@", displayedFriend?.firstName ?? "")
+        .filter("firstName == %@", displayedFriend?.id ?? "")
     
-//    var friendDetail = [
-//        UserPic(name: "", date: Date(), userPic: UIImage(named: "panda-go-panda")!),
-//        UserPic(name: "", date: Date(), userPic: UIImage(named: "panda-go-panda")!),
-//        UserPic(name: "", date: Date(), userPic: UIImage(named: "panda-go-panda")!),
-//        UserPic(name: "", date: Date(), userPic: UIImage(named: "panda-go-panda")!),
-//        UserPic(name: "", date: Date(), userPic: UIImage(named: "panda-go-panda")!),
-//    ]
+//    private lazy var friend: User? =
+//        try? Realm(configuration: RealmService.deleteIfMigration)
+//        .object(ofType: User.self, forPrimaryKey: displayedFriend?.id ?? -1)
+    
+    private lazy var friend: User? =
+        displayedFriend.flatMap {
+            try? Realm(configuration: RealmService.deleteIfMigration)
+                .object(ofType: User.self, forPrimaryKey: $0.id)
+        }
 
     var friendDetail = [VKPhoto]()
         
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-         //self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: FriendInfoCell.reuseIdentifier)
-        //print("друг \(displayedFriend!.userId)")
         friendNameLabel.title = (displayedFriend?.lastName ?? "") + " " + (displayedFriend?.firstName ?? "")
-        // Do any additional setup after loading the view.
         
         collectionView.dataSource = self
         
-//        notificationToken = friends?.observe { [weak self] changes in //vkPhotos.first?.observe
-//            switch changes {
-//            case .initial:
-//                self?.collectionView.reloadData()
-//            case let .update(_, deletions, insertions, modifications):
-//                self?.collectionView.apply(deletions: deletions, insertions: insertions, modifications: modifications)
-//            case let .error(error):
-//                self?.show(error: error)
-//            }
-//        }
+        notificationToken = friend?.observe { [weak self] changes in
+            switch changes {
+            case .deleted:
+                self?.navigationController?.popViewController(animated: true)
+            case .change:
+                self?.collectionView.reloadData()
+            case .error:
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     deinit {
@@ -72,15 +67,23 @@ class FriendInfoViewController: UICollectionViewController {
         super.viewWillAppear(animated)
         
         if let currentFriend = displayedFriend?.id {
-            //networkSession.friend(for: currentFriend, completion: { [weak self] result in
             networkSession.loadPhotos(owner: currentFriend, completionHandler: { [weak self] result in //617849582
                 switch result {
                 case let .failure(error):
                     print(error)
                 case let .success(photos):
-                    try? RealmService.save(items: photos)
-                    self?.vkPhotos = photos
-                    self?.collectionView.reloadData()
+                    guard let friend = self?.friend else { return }
+                    do {
+                        let realm = try Realm()
+                        
+                        try realm.write {
+                            friend.photos.removeAll()
+                            friend.photos.append(objectsIn: photos)
+                        }
+                        
+                    } catch {
+                        print(error)
+                    }
                 }
             })
         }
@@ -95,17 +98,18 @@ class FriendInfoViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return friendDetail.count
-        return vkPhotos.count
+        return friend?.photos.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FriendInfoCell.reuseIdentifier, for: indexPath) as? FriendInfoCell else { return UICollectionViewCell() }
     
         friendName = (displayedFriend?.lastName ?? "") + " " + (displayedFriend?.firstName ?? "")
-        //friendDetail[indexPath.item].name = friendName
-        //friendDetail[indexPath.item].id = displayedFriend!.id
-        //cell.configure(with: friendDetail[indexPath.item])
-        cell.configure(with: vkPhotos[indexPath.item])
+        
+        if let photo = friend?.photos[indexPath.item] {
+            cell.configure(with: photo)
+        }
+        
         return cell
     }
 }

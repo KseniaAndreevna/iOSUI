@@ -33,4 +33,13 @@ class RealmService {
             realm.add(items)
         }
     }
+    
+    static func get<T: Object>(
+        type: T.Type,
+        configuration: Realm.Configuration = deleteIfMigration
+    ) throws -> Results<T> {
+        let realm = try Realm(configuration: configuration)
+        print(configuration.fileURL ?? "")
+        return realm.objects(T.self)
+    }
 }
