@@ -211,5 +211,25 @@ class NetworkService {
             }
         }
     }
+    
+    
+    
+    
+    func loadPosts(completionHandler: @escaping ((Result<[Post], Error>) -> Void)) {
+        let path = "/method/newsfeed.get"
+    
+        AF.request(baseVkUrl + path, method: .get, parameters: baseParams).responseJSON { response in
+            switch response.result {
+            case let .failure(error):
+                completionHandler(.failure(error))
+            case let .success(json):
+                let postsJSONArray = JSON(json)["response"]["items"].arrayValue
+                let posts = postsJSONArray.map(Post.init)
+                completionHandler(.success(posts))
+                print("loadPosts \(posts)")
+
+            }
+        }
+    }
 
 }

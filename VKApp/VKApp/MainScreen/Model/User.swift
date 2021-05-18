@@ -41,8 +41,6 @@ class User: RealmSwift.Object {
     @objc dynamic var lastName: String = ""
     
     let photos = List<VKPhoto>()
-    
-    
 
     var photoUrl: URL? { URL(string: photoUrlString) }
 
