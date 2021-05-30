@@ -1,0 +1,34 @@
+//
+//  TopDownAnimation.swift
+//  Weather
+//
+//  Created by andrey.antropov on 10.03.2021.
+//
+
+import UIKit
+
+class TopDownAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+    
+    private let animationDuration: TimeInterval = 1
+    
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        0.3
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        guard let sourceController = transitionContext.viewController(forKey: .from),
+              let destinationController = transitionContext.viewController(forKey: .to) else {
+            return
+        }
+        
+        transitionContext.containerView.addSubview(destinationController.view)
+        
+        destinationController.view.frame = sourceController.view.frame.insetBy(dx: 0, dy: -sourceController.view.frame.height)
+        
+        UIView.animate(withDuration: animationDuration, animations: {
+            destinationController.view.frame = sourceController.view.frame
+        }) { completed in
+            transitionContext.completeTransition(completed)
+        }
+    }
+}
