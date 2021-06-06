@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +13,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendRichCell" rowHeight="145" id="KGk-i7-Jjw" customClass="FriendRichCell" customModule="VKApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="473" height="145"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="473" height="145"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -30,10 +30,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Peo-K6-Z1u">
-                        <rect key="frame" x="162" y="14" width="280" height="116"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="280" id="pn8-8i-uI1"/>
-                        </constraints>
+                        <rect key="frame" x="162" y="14" width="299" height="116"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +38,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Peo-K6-Z1u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="2Lt-QQ-0y6"/>
-                    <constraint firstAttribute="bottom" secondItem="vja-Wd-adz" secondAttribute="bottom" constant="12" id="2bH-7u-9hD"/>
+                    <constraint firstAttribute="bottom" secondItem="vja-Wd-adz" secondAttribute="bottom" priority="999" constant="12" id="2bH-7u-9hD"/>
                     <constraint firstItem="Peo-K6-Z1u" firstAttribute="leading" secondItem="vja-Wd-adz" secondAttribute="trailing" constant="30" id="4nh-bP-smh"/>
                     <constraint firstItem="vja-Wd-adz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="6bZ-zI-swG"/>
                     <constraint firstItem="kHh-eR-tEP" firstAttribute="centerX" secondItem="vja-Wd-adz" secondAttribute="centerX" id="EWb-8z-Wvb"/>

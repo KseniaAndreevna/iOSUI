@@ -3,4 +3,142 @@
    uuid = "D2AB6D85-9068-49BC-8E5D-130EA7D3A72A"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6004F838-D70E-4F21-B0B7-43E988219468"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKApp/MainScreen/NewsFlow/NewsImageCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "configure(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C7EF4029-4B33-46C5-853B-EA5952B3AEB9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKApp/MainScreen/Model/News.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "po json[&quot;attachments&quot;].arrayValue.first(where: { $0[&quot;type&quot;] == &quot;photo&quot; })?[&quot;photo&quot;][&quot;sizes&quot;].arrayValue.last?[&quot;url&quot;].stringValue">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E98366F-0C65-4E39-91E4-CE3CD5489797"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKApp/Networking/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "loadNews(completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9E98366F-0C65-4E39-91E4-CE3CD5489797 - 570b0e9472b0dcbf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (VKApp.News) -&gt; Swift.Optional&lt;VKApp.News&gt; in closure #4 () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in VKApp.NetworkService.loadNews(completionHandler: (Swift.Result&lt;Swift.Array&lt;VKApp.News&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "VKApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrey.antropov/Desktop/VKApp%205/VKApp/Networking/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "273"
+                  endingLineNumber = "273"
+                  offsetFromSymbolStart = "370">
+               </Location>
+               <Location
+                  uuid = "9E98366F-0C65-4E39-91E4-CE3CD5489797 - e0ff18638e39b75d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (VKApp.User) -&gt; Swift.Bool in closure #1 (VKApp.News) -&gt; Swift.Optional&lt;VKApp.News&gt; in closure #4 () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in VKApp.NetworkService.loadNews(completionHandler: (Swift.Result&lt;Swift.Array&lt;VKApp.News&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "VKApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrey.antropov/Desktop/VKApp%205/VKApp/Networking/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "273"
+                  endingLineNumber = "273"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "402CECE4-F27C-4ECE-8335-91C9F23E66D9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VKApp/Networking/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "loadNews(completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "402CECE4-F27C-4ECE-8335-91C9F23E66D9 - 570b0e9472b0dc64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (VKApp.News) -&gt; Swift.Optional&lt;VKApp.News&gt; in closure #4 () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in VKApp.NetworkService.loadNews(completionHandler: (Swift.Result&lt;Swift.Array&lt;VKApp.News&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "VKApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrey.antropov/Desktop/VKApp%205/VKApp/Networking/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "278"
+                  endingLineNumber = "278"
+                  offsetFromSymbolStart = "1146">
+               </Location>
+               <Location
+                  uuid = "402CECE4-F27C-4ECE-8335-91C9F23E66D9 - 932036e226d0feb2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (VKApp.Group) -&gt; Swift.Bool in closure #1 (VKApp.News) -&gt; Swift.Optional&lt;VKApp.News&gt; in closure #4 () -&gt; () in closure #1 (Alamofire.DataResponse&lt;Any, Alamofire.AFError&gt;) -&gt; () in VKApp.NetworkService.loadNews(completionHandler: (Swift.Result&lt;Swift.Array&lt;VKApp.News&gt;, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "VKApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/andrey.antropov/Desktop/VKApp%205/VKApp/Networking/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "278"
+                  endingLineNumber = "278"
+                  offsetFromSymbolStart = "82">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

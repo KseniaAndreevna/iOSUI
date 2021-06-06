@@ -22,7 +22,7 @@ class NewsSourceCell: UITableViewCell, AnyNewsCell {
         
         avatarImageView.snp.makeConstraints { make in
             make.width.equalTo(avatarImageView.snp.height)
-            make.width.equalTo(50)
+            make.width.equalTo(50).priority(999)
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(12)
             make.top.bottom.equalToSuperview().inset(12)
@@ -38,14 +38,41 @@ class NewsSourceCell: UITableViewCell, AnyNewsCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.avatarImageView.image = nil
+        self.authorName.text = nil
+        self.dateLabel.text = nil
+    }
+    
     
     public func configure(with news: News) {
-        if let newsSource = news.source {
-            avatarImageView.kf.setImage(with: newsSource.imageUrl)
-            authorName.text = newsSource.name
+//        if let newsSource = news.source {
+//            avatarImageView.kf.setImage(with: newsSource.imageUrl)
+//            authorName.text = newsSource.name
+//        } else {
+//            avatarImageView.image = UIImage(named: "panda01")
+//            authorName.text = "Панда Пандович"
+//        }
+        
+        let newsSource = news.source
+        if news.sourceId < 0 {
+            guard let group = try? RealmService.get(type: Group.self).filter("groupId == %@", -news.sourceId).first else { return }
+            authorName.text = group.name
+            avatarImageView.kf.setImage(with: newsSource?.imageUrl)
         } else {
-            avatarImageView.image = UIImage(named: "panda01")
-            authorName.text = "Панда Пандович"
+            guard let user = try? RealmService.get(type: User.self).filter("id == %@", news.sourceId).first else { return }
+            authorName.text = "\(user.firstName) \(user.lastName)"
+            avatarImageView.kf.setImage(with: newsSource?.imageUrl)
         }
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .medium
+        self.dateLabel.text = dateFormatter.string(from: news.date)
+
     }
 }

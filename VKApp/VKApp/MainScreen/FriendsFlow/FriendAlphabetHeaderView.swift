@@ -33,6 +33,7 @@ class FriendAlphabetHeaderView: UITableViewHeaderFooterView {
             headerTitle.textColor = .darkGray
             headerTitle.font = UIFont.systemFont(ofSize: 20, weight: .bold)
             headerTitle.textAlignment = .right
+            headerTitle.backgroundColor = .white
             //
             backgroundView = UIView()
             backgroundView?.backgroundColor = .white
@@ -43,8 +44,8 @@ class FriendAlphabetHeaderView: UITableViewHeaderFooterView {
             
             headerTitle.translatesAutoresizingMaskIntoConstraints = false
             
-            let xOffset: CGFloat = 20
-            let yOffset: CGFloat = 10
+            let xOffset: CGFloat = 10//20
+            let yOffset: CGFloat = 0//10
             
             headerTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: xOffset).isActive = true
             headerTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -xOffset).isActive = true

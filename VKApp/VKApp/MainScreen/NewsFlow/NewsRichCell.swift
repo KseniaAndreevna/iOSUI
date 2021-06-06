@@ -28,6 +28,9 @@ class NewsRichCell: UITableViewCell {
     static let reuseIdentifier = "NewsRichCell"
     static let nibName = "NewsRichCell"
     
+    static let horizontalInset: CGFloat = 12
+    static let verticalInset: CGFloat = 8
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         newsIconImageView.clipsToBounds = true
@@ -35,7 +38,8 @@ class NewsRichCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        //newsIconImageView.layer.cornerRadius = newsIconImageView.bounds.width/2
+        newsNameLabel.frame = contentView.bounds.insetBy(dx: NewsRichCell.horizontalInset, dy: NewsRichCell.verticalInset)
+        //newsIconImageView.layer.cornerRadius = (newsIconImageView.bounds.width/2).rounded()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,10 +47,22 @@ class NewsRichCell: UITableViewCell {
     }
     
     public func configure(with news: News) {
-        newsNameLabel.text = String(describing: news.name)
+        newsNameLabel.text = news.text
 //        newsIconImageView.image = news.mainPic
         print("NewsRichCell \(newsNameLabel.text ?? "TEST")")
         //print("NewsRichCell \(likeButton.numberOfSegments)")
         //print("NewsRichCell \(likeButton.selectedSegmentIndex)")
     }
+    
+    func configure(with news: News, font: UIFont) {
+        newsNameLabel.text = news.text
+        newsNameLabel.numberOfLines = 0
+        newsNameLabel.contentMode = .scaleToFill
+        newsNameLabel.font = font
+    }
+    
+    override func prepareForReuse() {
+        newsNameLabel.text = nil
+    }
+    
 }

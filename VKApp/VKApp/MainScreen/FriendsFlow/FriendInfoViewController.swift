@@ -15,7 +15,6 @@ class FriendInfoViewController: UICollectionViewController {
     var displayedFriend: User?
     
     private let networkSession = NetworkService(token: Session.shared.token)
-    
     private var notificationToken: NotificationToken?
     
     @IBOutlet var friendNameLabel: UINavigationItem!

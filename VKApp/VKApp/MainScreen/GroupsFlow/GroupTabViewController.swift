@@ -8,15 +8,15 @@
 import UIKit
 import RealmSwift
 
-class GroupTabViewController: UIViewController, UISearchResultsUpdating {
+class GroupTabViewController: UIViewController {
     
-    var searchResults: [Group] = []
-    let searchController = UISearchController(searchResultsController: nil)
     private let networkSession = NetworkService(token: Session.shared.token)
     private var notificationToken: NotificationToken?
     private lazy var groups: Results<Group>? = {
         try? Realm().objects(Group.self)
     }()
+    
+    var searchedGroups = [Group]()
     
     let operationQueue: OperationQueue = {
         let q = OperationQueue()
@@ -36,14 +36,8 @@ class GroupTabViewController: UIViewController, UISearchResultsUpdating {
         
         //для использования xib-ячейки
         tableView.register(UINib(nibName: GroupRichCell.nibName, bundle: nil), forCellReuseIdentifier: GroupRichCell.reuseIdentifier)
-        tableView.register(GroupAlphabetHeaderView.self, forHeaderFooterViewReuseIdentifier: GroupAlphabetHeaderView.reuseIdentifier)
+        //tableView.register(GroupAlphabetHeaderView.self, forHeaderFooterViewReuseIdentifier: GroupAlphabetHeaderView.reuseIdentifier)
         
-        //UISearchBar
-        searchController.searchResultsUpdater = self
-        self.definesPresentationContext = true
-        self.tableView.tableHeaderView = searchController.searchBar
-        self.tableView.contentOffset = CGPoint(x: 0, y: searchController.searchBar.frame.height)
-        searchController.searchBar.placeholder = "Find..."
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -74,20 +68,6 @@ class GroupTabViewController: UIViewController, UISearchResultsUpdating {
         realmSavingDataOperation.addDependency(parsingOperation)
         
         operationQueue.addOperations([downloadOperation, parsingOperation, realmSavingDataOperation], waitUntilFinished: false)
-    }
-    
-    func filterContent(for searchText: String) {
-//        searchResults = addedGroups.filter({ (group: Group) -> Bool in
-//            let match = group.name.range(of: searchText, options: .caseInsensitive)
-//            return match != nil
-//        })
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text {
-            filterContent(for: searchText)
-            tableView.reloadData()
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -165,28 +145,19 @@ extension GroupTabViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: GroupAlphabetHeaderView.reuseIdentifier) as? GroupAlphabetHeaderView else { return nil }
-//
-//        let firstLetter = String(sectionedGroups[section].title)
-//        header.headerTitle.text = firstLetter
-//
-//        return header
-//    }
 }
 
-//extension GroupTabViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            addedGroups.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "ShowGroupSegue", sender: nil)
+//extension GroupTabViewController: UISearchBarDelegate {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        networkSession.searchGroup(group: searchText, completionHandler: { [weak self] result in
+//            switch result {
+//            case let .failure(error):
+//                print(error)
+//            case let .success(groups):
+//                self?.searchedGroups = groups
+//                self?.tableView.reloadData()
+//            }
+//        })
 //    }
 //}
-
 

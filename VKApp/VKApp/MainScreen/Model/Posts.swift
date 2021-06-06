@@ -147,10 +147,11 @@ class Post: RealmSwift.Object {
     @objc dynamic var likesCount: Int = 0
     @objc dynamic var repostsCount: Int = 0
     @objc dynamic var viewsCount: Int = 0
+//    @objc dynamic var isLiked: Bool = false
+//    @objc dynamic var url: URL? { urlString.flatMap { URL(string: $0) } }
+//    @objc dynamic var urlString: String? = nil
     //@objc dynamic var photoUrlString: String = ""
-    
     //let photos = List<VKPhoto>()
-
     //var photoUrl: URL? { URL(string: photoUrlString) }
 
     convenience init(json: JSON) {
@@ -163,6 +164,9 @@ class Post: RealmSwift.Object {
         self.likesCount = json["likes"]["count"].intValue
         self.repostsCount = json["reposts"]["count"].intValue
         self.viewsCount = json["views"]["count"].intValue
+        
+//        self.urlString = json["attachments"].arrayValue.first(where: { $0["type"] == "photo" })?["photo"]["sizes"].arrayValue.last?["url"].stringValue
+//        self.isLiked = json["is_favorite"].boolValue
         //let commentsJSONArray = json["comments"].arrayValue
         //self.commentsCount = sizesJSONArray.map(Size.init)
         //self.photoUrlString = json["photo_100"].stringValue

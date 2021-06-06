@@ -42,4 +42,8 @@ class RealmService {
         print(configuration.fileURL ?? "")
         return realm.objects(T.self)
     }
+    
+    static func get<T: Object>(type: T.Type) throws -> Results<T> {
+        try Realm().objects(T.self)
+    }
 }

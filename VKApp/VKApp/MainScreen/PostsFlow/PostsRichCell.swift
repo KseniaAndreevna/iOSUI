@@ -36,7 +36,7 @@ class PostsRichCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        //postsIconImageView.layer.cornerRadius = postsIconImageView.bounds.width/2
+        //postsIconImageView.layer.cornerRadius = (postsIconImageView.bounds.width/2).rounded()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

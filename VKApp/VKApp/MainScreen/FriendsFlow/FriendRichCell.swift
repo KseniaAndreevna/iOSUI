@@ -14,6 +14,7 @@ class FriendRichCell: UITableViewCell {
     static let nibName = "FriendRichCell"
     
     var photoService: PhotoService?
+    var images = [String: UIImage]()
     private let cacheLifeTime: TimeInterval = 30 * 24 * 60 * 60
     
     @IBOutlet var friendShadowView: UIView!
@@ -28,6 +29,7 @@ class FriendRichCell: UITableViewCell {
         friendShadowView.layer.shadowColor = UIColor.systemBlue.cgColor
         friendShadowView.layer.shadowRadius = 4
         friendShadowView.layer.shadowOpacity = 0.8
+        friendShadowView.backgroundColor = .white
         
         //        let tapGesture = UITapGestureRecognizer()
         //        tapGesture.addTarget(self, action: #selector(tapGestureDetected))
@@ -37,8 +39,9 @@ class FriendRichCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        friendIconImageView.layer.cornerRadius = friendIconImageView.bounds.width/2
-        friendShadowView.layer.cornerRadius = friendShadowView.bounds.width/2
+        friendIconImageView.layer.cornerRadius = (friendIconImageView.bounds.width/2).rounded()
+        friendShadowView.layer.cornerRadius = (friendShadowView.bounds.width/2).rounded()
+        friendShadowView.backgroundColor = .white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -47,6 +50,8 @@ class FriendRichCell: UITableViewCell {
     
     public func configure(with friend: User) {
         friendNameLabel.text = "\(friend.firstName) \(friend.lastName)"
+        friendNameLabel.backgroundColor = .white
+        friendIconImageView.backgroundColor = .white
         friendIconImageView.kf.setImage(with: friend.photoUrl)
         saveFriendPicToDir(url: friend.photoUrlString, image: friendIconImageView.image ?? UIImage(named: "panda01")!)
     }
@@ -63,7 +68,7 @@ class FriendRichCell: UITableViewCell {
     func getFilePath(url: String) -> String? {
         
         guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return nil }
-        print("cachesDirectory \(cachesDirectory)")
+        //print("cachesDirectory \(cachesDirectory)")
         let hashName = url.split(separator: "/").last ?? "default"
         return cachesDirectory.appendingPathComponent(PhotoService.pathName + "/" + hashName).path
     }
@@ -87,9 +92,9 @@ class FriendRichCell: UITableViewCell {
             lifeTime <= cacheLifeTime,
             let image = UIImage(contentsOfFile: fileName) else { return nil }
 
-//        DispatchQueue.main.async { [self] in
-//            images[url] = image
-//        }
+        DispatchQueue.main.async { [self] in
+            images[url] = image
+        }
         return image
     }
     

@@ -9,6 +9,18 @@ import UIKit
 import SwiftyJSON
 import RealmSwift
 
+//struct FriendResponse: ObjectProvider {
+//    let response: FriendContainer
+//    
+//    func getRealmObjects() -> [Object] {
+//        return response.items
+//    }
+//}
+//
+//struct FriendContainer: Object {
+//    let items: [User]
+//}
+
 class User: RealmSwift.Object, NewsSource {
     //MARK: - Protocol conformance
     var name: String { "\(firstName) \(lastName)" }

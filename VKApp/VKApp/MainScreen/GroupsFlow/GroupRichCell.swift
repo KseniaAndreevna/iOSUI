@@ -24,13 +24,15 @@ class GroupRichCell: UITableViewCell {
         groupShadowView.layer.shadowColor = UIColor.systemGreen.cgColor
         groupShadowView.layer.shadowRadius = 4
         groupShadowView.layer.shadowOpacity = 0.8
+        groupShadowView.backgroundColor = .white
+        groupIconImageView.backgroundColor = .white
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        groupIconImageView.layer.cornerRadius = groupIconImageView.bounds.width/2
-        groupShadowView.layer.cornerRadius = groupShadowView.bounds.width/2
+        groupIconImageView.layer.cornerRadius = (groupIconImageView.bounds.width/2).rounded()
+        groupShadowView.layer.cornerRadius = (groupShadowView.bounds.width/2).rounded()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

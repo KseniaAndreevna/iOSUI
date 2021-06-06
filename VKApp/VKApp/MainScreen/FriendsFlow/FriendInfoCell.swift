@@ -35,6 +35,11 @@ class FriendInfoCell: UICollectionViewCell {
         iconImageView.kf.setImage(with: pic.sizes.first?.photoUrl)
         tapCounter.text = String(tapCount)
         
+        nameLabel.backgroundColor = .white
+        dateLabel.backgroundColor = .white
+        iconImageView.backgroundColor = .white
+        tapCounter.backgroundColor = .white
+        
         let tapGesture = UITapGestureRecognizer()
         tapGesture.addTarget(self, action: #selector(tapGestureDetected))
         self.addGestureRecognizer(tapGesture)

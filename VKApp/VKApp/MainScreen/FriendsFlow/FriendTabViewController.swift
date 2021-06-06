@@ -13,7 +13,7 @@ class FriendTabViewController: UIViewController {
     
     private let networkSession = NetworkService(token: Session.shared.token)
     
-    let friends: Results<User>? = try? RealmService.get(type: User.self)
+    var friends: Results<User>? = try? RealmService.get(type: User.self)
     var notificationToken: NotificationToken?
     
     var photoService: PhotoService?
@@ -66,14 +66,13 @@ class FriendTabViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        networkSession.loadFriends(completionHandler: { result in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(friends):
-                try? RealmService.save(items: friends, configuration: RealmService.deleteIfMigration, update: .modified)
-            }
-        })
+        let promise = networkSession.loadFriends()
+        
+        promise.done { friends in
+            try? RealmService.save(items: friends, configuration: RealmService.deleteIfMigration, update: .modified)
+        }.catch { error in
+            print(error)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -159,3 +158,18 @@ extension FriendTabViewController: UITableViewDelegate {
         performSegue(withIdentifier: "ShowFriendSegue", sender: nil)
     }
 }
+
+//extension FriendTabViewController: UISearchBarDelegate {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        networkSession.searchFriend(friend: searchText, completionHandler: { [weak self] result in
+//            switch result {
+//            case let .failure(error):
+//                print(error)
+//            case let .success(friends):
+//                let firstLetter = friends.first?.lastName.first
+//                self?.sectionedFriends[firstLetter].first = friends
+//                self?.tableView.reloadData()
+//            }
+//        })
+//    }
+//}

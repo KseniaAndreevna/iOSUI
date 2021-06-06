@@ -41,7 +41,9 @@ struct GroupContainer: Codable {
 //      "photo_200" : "https:\/\/sun1-99.userapi.com\/s\/v1\/ig2\/xtJFBRPa19Qj6riYjU6axByE-uRprP6w6HLZ3LxUsYCzJSzBfp0tN-jk6Ne_jyyLKMfTndDFTQeb9hyUCiwFzYxL.jpg?size=200x0&quality=96&crop=6,5,1098,1098&ava=1"
 //    },
 
-class Group: Object, Codable {
+class Group: Object, Codable, NewsSource {
+    var imageUrlString: String { pictureUrlString }
+    
     @objc dynamic var groupId: Int = 0
     @objc dynamic var name: String = ""
     @objc dynamic private var pictureUrlString: String = ""
