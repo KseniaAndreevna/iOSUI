@@ -56,10 +56,7 @@
 		9369354E2619B7620071F7E0 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9369354D2619B7620071F7E0 /* SwiftyJSON */; };
 		93693556261CF9850071F7E0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 93693555261CF9850071F7E0 /* RealmSwift */; };
 		9369355A261CF9E70071F7E0 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 93693559261CF9E70071F7E0 /* KeychainAccess */; };
-		936A85E8264C2DC40002EBD9 /* PostsRichCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936A85E6264C2DC40002EBD9 /* PostsRichCell.swift */; };
-		936A85E9264C2DC40002EBD9 /* PostsRichCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936A85E7264C2DC40002EBD9 /* PostsRichCell.xib */; };
 		936A85EF264C2FA40002EBD9 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936A85EE264C2FA40002EBD9 /* Posts.swift */; };
-		936A85F1264C33DC0002EBD9 /* PostsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936A85F0264C33DC0002EBD9 /* PostsTabViewController.swift */; };
 		936A85F32662A9FA0002EBD9 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936A85F22662A9F90002EBD9 /* PhotoService.swift */; };
 		93A07451260F1D9200FB8E8D /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A07450260F1D9200FB8E8D /* VKLoginViewController.swift */; };
 		93A07455260F3DB400FB8E8D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A07454260F3DB400FB8E8D /* NetworkService.swift */; };
@@ -123,10 +120,7 @@
 		93565E65260B7AC70090BBEF /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		936935442619AF190071F7E0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		936935482619B0960071F7E0 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
-		936A85E6264C2DC40002EBD9 /* PostsRichCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRichCell.swift; sourceTree = "<group>"; };
-		936A85E7264C2DC40002EBD9 /* PostsRichCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsRichCell.xib; sourceTree = "<group>"; };
 		936A85EE264C2FA40002EBD9 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
-		936A85F0264C33DC0002EBD9 /* PostsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTabViewController.swift; sourceTree = "<group>"; };
 		936A85F22662A9F90002EBD9 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		93A07450260F1D9200FB8E8D /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		93A07454260F3DB400FB8E8D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -219,7 +213,6 @@
 				61D921F52601272C00C0DD6A /* FriendsFlow */,
 				61D921F62601274700C0DD6A /* GroupsFlow */,
 				61D921F82601275E00C0DD6A /* NewsFlow */,
-				936A85EB264C2DF40002EBD9 /* PostsFlow */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -299,16 +292,6 @@
 				93A07450260F1D9200FB8E8D /* VKLoginViewController.swift */,
 			);
 			path = LoginScreen;
-			sourceTree = "<group>";
-		};
-		936A85EB264C2DF40002EBD9 /* PostsFlow */ = {
-			isa = PBXGroup;
-			children = (
-				936A85F0264C33DC0002EBD9 /* PostsTabViewController.swift */,
-				936A85E6264C2DC40002EBD9 /* PostsRichCell.swift */,
-				936A85E7264C2DC40002EBD9 /* PostsRichCell.xib */,
-			);
-			path = PostsFlow;
 			sourceTree = "<group>";
 		};
 		93C8157526133F1E0057B131 /* Animator */ = {
@@ -443,7 +426,6 @@
 				614EDFC425DA9109003B6209 /* Assets.xcassets in Resources */,
 				61D4936225EFBE4D00BC10BF /* FriendRichCell.xib in Resources */,
 				614EDFC225DA9105003B6209 /* Main.storyboard in Resources */,
-				936A85E9264C2DC40002EBD9 /* PostsRichCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +502,6 @@
 				614EDFBD25DA9105003B6209 /* SceneDelegate.swift in Sources */,
 				93B0700326068E9300C46F16 /* AddGroupDetailViewController.swift in Sources */,
 				61D4936125EFBE4D00BC10BF /* FriendRichCell.swift in Sources */,
-				936A85E8264C2DC40002EBD9 /* PostsRichCell.swift in Sources */,
 				93C8157026133F170057B131 /* CustomPush+PopAnimators.swift in Sources */,
 				61D4936525EFBEBC00BC10BF /* FriendAlphabetHeaderView.swift in Sources */,
 				936935452619AF190071F7E0 /* User.swift in Sources */,
@@ -538,7 +519,6 @@
 				61D4932F25EAF00B00BC10BF /* FriendInfoCell.swift in Sources */,
 				61D921FE260128C700C0DD6A /* NewsDetailController.swift in Sources */,
 				93C8157226133F170057B131 /* InteractiveTransitionAnimator.swift in Sources */,
-				936A85F1264C33DC0002EBD9 /* PostsTabViewController.swift in Sources */,
 				61D4932C25EAEE2C00BC10BF /* UserPic.swift in Sources */,
 				61D921D825F4176C00C0DD6A /* News.swift in Sources */,
 				17F6CF972667F3E000EC81B6 /* SomeClass.swift in Sources */,

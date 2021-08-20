@@ -44,12 +44,12 @@ struct News {
             cellsRequired.append(.source)
         }
         
-        if urlString != nil {
-            cellsRequired.append(.image)
-        }
-        
         if !text.isEmpty {
             cellsRequired.append(.text)
+        }
+        
+        if urlString != nil {
+            cellsRequired.append(.image)
         }
         
         // isLiked cell is always possible to build, because isLiked property is not optional

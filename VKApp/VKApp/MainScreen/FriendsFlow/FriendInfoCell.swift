@@ -30,9 +30,9 @@ class FriendInfoCell: UICollectionViewCell {
 //    }
     
     func configure(with pic: VKPhoto) {
-        nameLabel.text = String(describing: pic.id)
-        dateLabel.text = String(describing: Date())
-        iconImageView.kf.setImage(with: pic.sizes.first?.photoUrl)
+        nameLabel.text = "ID: " + String(describing: pic.id)
+        dateLabel.text = "Дата: " + String(describing: Date())
+        iconImageView.kf.setImage(with: pic.sizes.last?.photoUrl) //first
         tapCounter.text = String(tapCount)
         
         nameLabel.backgroundColor = .white

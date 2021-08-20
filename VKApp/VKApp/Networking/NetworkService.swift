@@ -28,7 +28,7 @@ class NetworkService {
         "access_token": accessToken,
         "v": "5.126",
         "filters": "post",
-        "count": 20
+        "count": 100
      ]
     }
     

@@ -88,11 +88,13 @@ class NewsTabViewController: UITableViewController {
         refreshControl?.tintColor = .systemBlue
         refreshControl?.addTarget(self, action: #selector(refreshControlPulled), for: .valueChanged)
         
+        tableView.dataSource = self
+        
         tableView.prefetchDataSource = self
     }
     
     @objc private func refreshControlPulled() {
-        print("LOADING...")
+        print("Loading...")
         
         guard let firstPost = news.first else { self.refreshControl?.endRefreshing(); return }
         
@@ -199,6 +201,31 @@ extension NewsTabViewController: UITableViewDataSourcePrefetching {
     }
 }
 
+//extension PrefetchViewController : UITableViewDataSourcePrefetching {
+//  func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+//
+//    // fetch News from API for those rows that are being prefetched (near to visible area)
+//    for indexPath in indexPaths {
+//      self.fetchNews(ofIndex: indexPath.row)
+//    }
+//  }
+//
+//  func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+//
+//    // cancel the task of fetching news from API when user scroll away from them
+//    for indexPath in indexPaths {
+//      self.cancelFetchNews(ofIndex: indexPath.row)
+//    }
+//  }
+//}
+
+
+/// <#Description#>
+/// - Parameters:
+///   - text: <#text description#>
+///   - font: <#font description#>
+///   - availableWidth: <#availableWidth description#>
+/// - Returns: <#description#>
 func getLabelSize(text: String, font: UIFont, availableWidth: CGFloat) -> CGSize {
     //получаем размеры блока, в который надо вписать надпись
     //используем максимальную ширину и максимально возможную высоту
